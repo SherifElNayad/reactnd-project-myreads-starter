@@ -12,7 +12,6 @@ class Search extends Component{
       // query = query.trim()
       this.setState({query})
       const result = await BooksAPI.search(query);
-      console.log(result)
       this.setState({found:result})
 
     }

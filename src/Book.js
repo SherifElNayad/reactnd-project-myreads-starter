@@ -4,7 +4,6 @@ import * as BooksAPI from './BooksAPI';
 class Book extends Component{
     render(){
     const shelfBooks = this.props.books;
-    console.log(shelfBooks);
 return(
         <div className="list-books-content">
        

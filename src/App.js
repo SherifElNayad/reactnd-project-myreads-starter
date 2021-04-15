@@ -8,7 +8,6 @@ import { BrowserRouter,Route } from 'react-router-dom';
 class BooksApp extends React.Component {
   state = {
     books: [],
-    // showSearchPage: false
   };
 
 componentDidMount()
@@ -20,8 +19,6 @@ componentDidUpdate()
   BooksAPI.getAll().then(resp => this.setState({books:resp})); 
 }
 changeBookShelf = (book, shelf)  => {
-  console.log("Called" , book.id)
-  console.log(this.state.books)
   BooksAPI.update(book,shelf);
   const bo = this.state.books.map(nbo => {
     if (nbo.id === book.id) {
@@ -39,7 +36,6 @@ changeBookShelf = (book, shelf)  => {
 
 
 updateFoundBook = (book, shelf)  => {
-  console.log(shelf)
   BooksAPI.update(book,shelf);
   let flag = 0;
   const bo = this.state.books.forEach(nbo => {
@@ -57,7 +53,6 @@ updateFoundBook = (book, shelf)  => {
       this.setState({
         books:[...this.state.books,book]
       })
-      console.log([...this.state.books,book])
       // this.state.books.push(book);
     }
   ;
