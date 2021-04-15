@@ -50,7 +50,7 @@ class Search extends Component{
                      <div className="book-shelf-changer">
                        <select value ={book.shelf} onChange = {e=> this.props.changeShelf(book, e.target.value)}>
                          <option value="move" disabled>Move to...</option>
-                         <option value="choose"></option>
+                         <option default value="choose">Choose a shelf for the book</option>
                          <option value="currentlyReading">Currently Reading</option>
                          <option value="wantToRead">Want to Read</option>
                          <option value="read">Read</option>
