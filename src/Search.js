@@ -9,9 +9,10 @@ class Search extends Component{
   searchQuery = async e => {
     try{
      var query = e.target.value
-      // query = query.trim()
       this.setState({query})
       const result = await BooksAPI.search(query);
+      console.log("Result" + result)
+      this.updateShelfOfResult(result)
       this.setState({found:result})
 
     }
@@ -24,7 +25,19 @@ class Search extends Component{
       query: "",
       found: []
     } 
-
+    updateShelfOfResult = (searchResults) => {
+          const allBooks =  this.props.allBooks
+          const addToState = searchResults.filter((result) => allBooks.find(book => {
+              if(book.id === result.id) {
+                  result.shelf = book.shelf
+                  return result
+              } else {
+                  result.shelf = "none"
+              }
+          }))
+          allBooks.concat(addToState)
+      
+  }
   render(){ 
       
         return ( 
@@ -44,13 +57,13 @@ class Search extends Component{
                {this.state.found && this.state.found.length && this.state.found.map(book => {
                     return (
                      <li key= {book.id}>
+
                  <div className="book">
                    <div className="book-top">
                      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail:""})` }}></div>
                      <div className="book-shelf-changer">
                        <select value ={book.shelf} onChange = {e=> this.props.changeShelf(book, e.target.value)}>
                          <option value="move" disabled>Move to...</option>
-                         <option default value="choose">Choose a shelf for the book</option>
                          <option value="currentlyReading">Currently Reading</option>
                          <option value="wantToRead">Want to Read</option>
                          <option value="read">Read</option>

@@ -67,6 +67,7 @@ updateFoundBook = (book, shelf)  => {
       )} />      <div className="list-books"> 
       <Route exact path='/' render={()=>(
        <Shelf 
+       changeShelf={this.changeBookShelf}
        currentlyReading={this.state.books.filter(book => book.shelf === "currentlyReading")}
        read={this.state.books.filter(book => book.shelf === "read")}
        wantToRead={this.state.books.filter(book => book.shelf === "wantToRead")}
