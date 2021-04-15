@@ -42,13 +42,16 @@ updateFoundBook = (book, shelf)  => {
   console.log(shelf)
   BooksAPI.update(book,shelf);
   let flag = 0;
-  this.state.books.forEach(nbo => {
+  const bo = this.state.books.forEach(nbo => {
     if (nbo.id === book.id) {
       flag = 1;
       nbo.shelf = shelf
     }
 
   })
+  this.setState({
+    books: bo,
+  });
     if(flag === 0)
     {
       this.setState({

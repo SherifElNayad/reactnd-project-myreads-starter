@@ -9,7 +9,7 @@ class Search extends Component{
   searchQuery = async e => {
     try{
      var query = e.target.value
-      query = query.trim()
+      // query = query.trim()
       this.setState({query})
       const result = await BooksAPI.search(query);
       console.log(result)
@@ -51,7 +51,7 @@ class Search extends Component{
                      <div className="book-shelf-changer">
                        <select value ={book.shelf} onChange = {e=> this.props.changeShelf(book, e.target.value)}>
                          <option value="move" disabled>Move to...</option>
-                         <option default value="choose"></option>
+                         <option value="choose"></option>
                          <option value="currentlyReading">Currently Reading</option>
                          <option value="wantToRead">Want to Read</option>
                          <option value="read">Read</option>
