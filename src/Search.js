@@ -42,7 +42,7 @@ class Search extends Component{
             </div>
             <div className="search-books-results">
             <ol className="books-grid">
-               {this.state.found.map(book => {
+               {this.state.found && this.state.found.length && this.state.found.map(book => {
                     return (
                      <li key= {book.id}>
                  <div className="book">
@@ -51,6 +51,7 @@ class Search extends Component{
                      <div className="book-shelf-changer">
                        <select value ={book.shelf} onChange = {e=> this.props.changeShelf(book, e.target.value)}>
                          <option value="move" disabled>Move to...</option>
+                         <option default value="choose"></option>
                          <option value="currentlyReading">Currently Reading</option>
                          <option value="wantToRead">Want to Read</option>
                          <option value="read">Read</option>
